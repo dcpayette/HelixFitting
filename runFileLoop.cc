@@ -92,7 +92,7 @@ int main(int argc, char** argv) {
 		int n_RTPC__rec_TID = RTPC__rec_TID->getLength();
 
 		for(int b = 0; b < n_RTPC__rec_TID; b++){
-			std::cout << RTPC__rec_TID->getValue(b) << " " << RTPC__rec_posZ->getValue(b) << " " ;
+		        std::cout << RTPC__rec_TID->getValue(b) << " " << RTPC__rec_posZ->getValue(b) << std::endl;
 			prevtid = RTPC__rec_TID->getValue(b);
 			if(tid != prevtid){
 				tid = RTPC__rec_TID->getValue(b);
@@ -110,10 +110,9 @@ int main(int argc, char** argv) {
 			float phi = atan2(y,x);
 			float q = 1; 
 			hh_hitlist[hh_num_hits] = new HitVector(cellID,time,1,z,r,phi,q);
-			std::cout << hh_hitlist[hh_num_hits]->z << std::endl;
 		}
-		std::cout << hh_hitlist[chain_hits[3][2]]->z << std::endl;
 	}
+	std::cout << std::endl;
    //----------------------------------------------------
 }
 //###### ENF OF GENERATED FILE #######
