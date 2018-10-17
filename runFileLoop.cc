@@ -112,7 +112,7 @@ int main(int argc, char** argv) {
 			hh_hitlist[hh_num_hits] = new HitVector(cellID,time,1,z,r,phi,q);
 			std::cout << hh_hitlist[hh_num_hits]->z << std::endl;
 		}
-		std::cout << hh_hitlist[chain_hits[3][2]] << std::endl;
+		std::cout << hh_hitlist[chain_hits[3][2]]->z << std::endl;
 	}
    //----------------------------------------------------
 }
