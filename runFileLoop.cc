@@ -85,6 +85,8 @@ int main(int argc, char** argv) {
 	int chain_hits[300][300];
 	HitVector *hh_hitlist[600];
 	double szpos[300][3];
+	double R; double A; double B;
+        double Phi_deg; double Theta_deg; double Z0; int fit_track_to_beamline=0;
 	while(reader.next()==true){
 		entry++;
 		if(entry > 1) break;
@@ -97,10 +99,14 @@ int main(int argc, char** argv) {
 		  //std::cout << RTPC__rec_TID->getValue(b) << " " << RTPC__rec_posZ->getValue(b) << std::endl;
 			prevtid = RTPC__rec_TID->getValue(b);
 			if(tid != prevtid){
-			  
+				if(num_hits_this_chain[tid] > 0){
+					HelixFit(num_hits_this_chain[7]-1, szpos, R, A, B, Phi_deg, Theta_deg, Z0, fit_track_to_beamline);
+					std::cout << tid <<  " " << R << " " << 0.3*50*R << std::endl;
+				}
 				tid = RTPC__rec_TID->getValue(b);
 				num_chains++;
 				num_hits_this_chain[tid] = 0;
+				
 			}
 			num_hits_this_chain[tid]++;
 			hh_num_hits++;
@@ -124,11 +130,9 @@ int main(int argc, char** argv) {
 		}
 		//std::cout << hh_num_hits << std::endl;
 	}
-        double R; double A; double B;
-        double Phi_deg; double Theta_deg; double Z0; int fit_track_to_beamline=0;
+        
 	std::cout << num_hits_this_chain[7] << std::endl;
-	HelixFit(num_hits_this_chain[7]-1, szpos, R, A, B, Phi_deg, Theta_deg, Z0, fit_track_to_beamline);
-	std::cout << R << " " << A << " " << B << " " << Phi_deg << " " <<  std::endl;
+	
    //----------------------------------------------------
 }
 //###### ENF OF GENERATED FILE #######
