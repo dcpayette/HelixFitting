@@ -18,23 +18,24 @@
 #include "reader.h"
 #include "node.h"
 #include <math.h>
+#include "BonusHelixFit.cc"
 
 class HitVector{
 public:
 	int pad; 
-	float t; 
+	double t; 
 	int status; 
-	float z; 
-	float r; 
-	float phi;
-	float q;
+	double z; 
+	double r; 
+	double phi;
+	double q;
 
 	HitVector()//Default constructor
 	{
 		pad = status = -1;
 		t = z = r = phi = q = -1.0; 
 	}
-	HitVector(int _pad, float _t, int _status, float _z, float _r, float _phi, float _q)
+	HitVector(int _pad, double _t, int _status, double _z, double _r, double _phi, double _q)
 	{
 		pad = _pad;
 		t = _t; 
@@ -83,6 +84,7 @@ int main(int argc, char** argv) {
 	int num_hits_this_chain[300];
 	int chain_hits[300][300];
 	HitVector *hh_hitlist[600];
+	double szpos[300][3];
 	while(reader.next()==true){
 		entry++;
 		if(entry > 1) break;
@@ -92,27 +94,41 @@ int main(int argc, char** argv) {
 		int n_RTPC__rec_TID = RTPC__rec_TID->getLength();
 
 		for(int b = 0; b < n_RTPC__rec_TID; b++){
-		        std::cout << RTPC__rec_TID->getValue(b) << " " << RTPC__rec_posZ->getValue(b) << std::endl;
+		  //std::cout << RTPC__rec_TID->getValue(b) << " " << RTPC__rec_posZ->getValue(b) << std::endl;
 			prevtid = RTPC__rec_TID->getValue(b);
 			if(tid != prevtid){
+			  
 				tid = RTPC__rec_TID->getValue(b);
 				num_chains++;
+				num_hits_this_chain[tid] = 0;
 			}
 			num_hits_this_chain[tid]++;
 			hh_num_hits++;
 			chain_hits[tid][num_hits_this_chain[tid]] = hh_num_hits;
 			int cellID = RTPC__rec_cellID->getValue(b);
-			float time = RTPC__rec_time->getValue(b);
-			float z = RTPC__rec_posZ->getValue(b);
-			float x = RTPC__rec_posX->getValue(b);
-			float y = RTPC__rec_posY->getValue(b);
-			float r = sqrt(x*x+y*y);
-			float phi = atan2(y,x);
-			float q = 1; 
+			double time = RTPC__rec_time->getValue(b);
+			double z = RTPC__rec_posZ->getValue(b);//*10.0;
+			double x = RTPC__rec_posX->getValue(b);//*10.0;
+			//std::cout << x << std::endl;
+			double y = RTPC__rec_posY->getValue(b);//*10.0;
+			double r = sqrt(x*x+y*y);
+			double phi = atan2(y,x);
+			double q = 1;
+			if(tid == 7){
+			szpos[num_hits_this_chain[tid]-1][0] = x;
+			szpos[num_hits_this_chain[tid]-1][1] = y;
+			szpos[num_hits_this_chain[tid]-1][2] = z;
+			}
 			hh_hitlist[hh_num_hits] = new HitVector(cellID,time,1,z,r,phi,q);
+			//std::cout << hh_num_hits << std::endl;
 		}
+		//std::cout << hh_num_hits << std::endl;
 	}
-	std::cout << std::endl;
+        double R; double A; double B;
+        double Phi_deg; double Theta_deg; double Z0; int fit_track_to_beamline=0;
+	std::cout << num_hits_this_chain[7] << std::endl;
+	HelixFit(num_hits_this_chain[7]-1, szpos, R, A, B, Phi_deg, Theta_deg, Z0, fit_track_to_beamline);
+	std::cout << R << " " << A << " " << B << " " << Phi_deg << " " <<  std::endl;
    //----------------------------------------------------
 }
 //###### ENF OF GENERATED FILE #######
