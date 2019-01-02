@@ -15,7 +15,6 @@
 //***********************************************************************
 #include <cstdlib>
 #include <iostream>
-
 #include "reader.h"
 #include "node.h"
 #include <math.h>
@@ -57,16 +56,16 @@ public:
 	}
 };
 double xcirc(double t, double r, double ph0){
-  using namespace TMath;
-  return r*(cos(ph0+t));
+	using namespace TMath;
+  	return r*(cos(ph0+t));
 }
 double ycirc(double t, double r, double ph0){
-  using namespace TMath;
-  return r*(sin(ph0+t));
+  	using namespace TMath;
+ 	return r*(sin(ph0+t));
 }
 double zcirc(double t, double r, double th){
-  using namespace TMath;
-  return r*t/tan(th*DegToRad());
+  	using namespace TMath;
+  	return r*t/tan(th*DegToRad());
 }
 
 
@@ -94,10 +93,12 @@ int main(int argc, char** argv) {
 	hipo::node<int16_t>    *MC__Event_targetid = reader.getBranch<int16_t>("MC::Event","targetid");
 	hipo::node<float>        *MC__Event_weight = reader.getBranch<float>("MC::Event","weight");
 	hipo::node<int16_t>     *MC__Event_ztarget = reader.getBranch<int16_t>("MC::Event","ztarget");
+	
 	hipo::node<int32_t>      *MC__Header_event = reader.getBranch<int32_t>("MC::Header","event");
 	hipo::node<float>     *MC__Header_helicity = reader.getBranch<float>("MC::Header","helicity");
 	hipo::node<int32_t>        *MC__Header_run = reader.getBranch<int32_t>("MC::Header","run");
 	hipo::node<int8_t>        *MC__Header_type = reader.getBranch<int8_t>("MC::Header","type");
+	
 	hipo::node<float>            *MC__Lund_E = reader.getBranch<float>("MC::Lund","E");
 	hipo::node<int8_t>    *MC__Lund_daughter = reader.getBranch<int8_t>("MC::Lund","daughter");
 	hipo::node<int8_t>       *MC__Lund_index = reader.getBranch<int8_t>("MC::Lund","index");
@@ -112,51 +113,56 @@ int main(int argc, char** argv) {
 	hipo::node<float>           *MC__Lund_vx = reader.getBranch<float>("MC::Lund","vx");
 	hipo::node<float>           *MC__Lund_vy = reader.getBranch<float>("MC::Lund","vy");
 	hipo::node<float>           *MC__Lund_vz = reader.getBranch<float>("MC::Lund","vz");
+	
 	hipo::node<int32_t>   *MC__Particle_pid = reader.getBranch<int32_t>("MC::Particle","pid");
         hipo::node<float>      *MC__Particle_px = reader.getBranch<float>("MC::Particle","px");
         hipo::node<float>      *MC__Particle_py = reader.getBranch<float>("MC::Particle","py");
         hipo::node<float>      *MC__Particle_pz = reader.getBranch<float>("MC::Particle","pz");
         hipo::node<float>      *MC__Particle_vt = reader.getBranch<float>("MC::Particle","vt");
-   hipo::node<float>      *MC__Particle_vx = reader.getBranch<float>("MC::Particle","vx");
-   hipo::node<float>      *MC__Particle_vy = reader.getBranch<float>("MC::Particle","vy");
-   hipo::node<float>      *MC__Particle_vz = reader.getBranch<float>("MC::Particle","vz");
-   hipo::node<float>        *MC__True_avgLx = reader.getBranch<float>("MC::True","avgLx");
-   hipo::node<float>        *MC__True_avgLy = reader.getBranch<float>("MC::True","avgLy");
-   hipo::node<float>        *MC__True_avgLz = reader.getBranch<float>("MC::True","avgLz");
-   hipo::node<float>         *MC__True_avgT = reader.getBranch<float>("MC::True","avgT");
-   hipo::node<float>         *MC__True_avgX = reader.getBranch<float>("MC::True","avgX");
-   hipo::node<float>         *MC__True_avgY = reader.getBranch<float>("MC::True","avgY");
-   hipo::node<float>         *MC__True_avgZ = reader.getBranch<float>("MC::True","avgZ");
-   hipo::node<int8_t>    *MC__True_detector = reader.getBranch<int8_t>("MC::True","detector");
-   hipo::node<int32_t>       *MC__True_mpid = reader.getBranch<int32_t>("MC::True","mpid");
-   hipo::node<int32_t>       *MC__True_mtid = reader.getBranch<int32_t>("MC::True","mtid");
-   hipo::node<float>          *MC__True_mvx = reader.getBranch<float>("MC::True","mvx");
-   hipo::node<float>          *MC__True_mvy = reader.getBranch<float>("MC::True","mvy");
-   hipo::node<float>          *MC__True_mvz = reader.getBranch<float>("MC::True","mvz");
-   hipo::node<int32_t>       *MC__True_otid = reader.getBranch<int32_t>("MC::True","otid");
-   hipo::node<int32_t>        *MC__True_pid = reader.getBranch<int32_t>("MC::True","pid");
-   hipo::node<float>           *MC__True_px = reader.getBranch<float>("MC::True","px");
-   hipo::node<float>           *MC__True_py = reader.getBranch<float>("MC::True","py");
-   hipo::node<float>           *MC__True_pz = reader.getBranch<float>("MC::True","pz");
-   hipo::node<int32_t>        *MC__True_tid = reader.getBranch<int32_t>("MC::True","tid");
-   hipo::node<float>       *MC__True_trackE = reader.getBranch<float>("MC::True","trackE");
-   hipo::node<float>           *MC__True_vx = reader.getBranch<float>("MC::True","vx");
-   hipo::node<float>           *MC__True_vy = reader.getBranch<float>("MC::True","vy");
-   hipo::node<float>           *MC__True_vz = reader.getBranch<float>("MC::True","vz");
-   hipo::node<int32_t>         *RTPC__adc_ADC = reader.getBranch<int32_t>("RTPC::adc","ADC");
-   hipo::node<int16_t>   *RTPC__adc_component = reader.getBranch<int16_t>("RTPC::adc","component");
-   hipo::node<int8_t>        *RTPC__adc_layer = reader.getBranch<int8_t>("RTPC::adc","layer");
-   hipo::node<int8_t>        *RTPC__adc_order = reader.getBranch<int8_t>("RTPC::adc","order");
-   hipo::node<int16_t>         *RTPC__adc_ped = reader.getBranch<int16_t>("RTPC::adc","ped");
-   hipo::node<int8_t>       *RTPC__adc_sector = reader.getBranch<int8_t>("RTPC::adc","sector");
-   hipo::node<float>          *RTPC__adc_time = reader.getBranch<float>("RTPC::adc","time");
-   hipo::node<float>     *RTPC__pos_energy = reader.getBranch<float>("RTPC::pos","energy");
-   hipo::node<float>        *RTPC__pos_phi = reader.getBranch<float>("RTPC::pos","phi");
-   hipo::node<float>       *RTPC__pos_posx = reader.getBranch<float>("RTPC::pos","posx");
-   hipo::node<float>       *RTPC__pos_posy = reader.getBranch<float>("RTPC::pos","posy");
-   hipo::node<float>       *RTPC__pos_posz = reader.getBranch<float>("RTPC::pos","posz");
-   hipo::node<int32_t>     *RTPC__pos_step = reader.getBranch<int32_t>("RTPC::pos","step");
-   hipo::node<float>       *RTPC__pos_time = reader.getBranch<float>("RTPC::pos","time");
+   	hipo::node<float>      *MC__Particle_vx = reader.getBranch<float>("MC::Particle","vx");
+   	hipo::node<float>      *MC__Particle_vy = reader.getBranch<float>("MC::Particle","vy");
+   	hipo::node<float>      *MC__Particle_vz = reader.getBranch<float>("MC::Particle","vz");
+	
+   	hipo::node<float>        *MC__True_avgLx = reader.getBranch<float>("MC::True","avgLx");
+   	hipo::node<float>        *MC__True_avgLy = reader.getBranch<float>("MC::True","avgLy");
+   	hipo::node<float>        *MC__True_avgLz = reader.getBranch<float>("MC::True","avgLz");
+   	hipo::node<float>         *MC__True_avgT = reader.getBranch<float>("MC::True","avgT");
+   	hipo::node<float>         *MC__True_avgX = reader.getBranch<float>("MC::True","avgX");
+   	hipo::node<float>         *MC__True_avgY = reader.getBranch<float>("MC::True","avgY");
+   	hipo::node<float>         *MC__True_avgZ = reader.getBranch<float>("MC::True","avgZ");
+   	hipo::node<int8_t>    *MC__True_detector = reader.getBranch<int8_t>("MC::True","detector");
+   	hipo::node<int32_t>       *MC__True_mpid = reader.getBranch<int32_t>("MC::True","mpid");
+   	hipo::node<int32_t>       *MC__True_mtid = reader.getBranch<int32_t>("MC::True","mtid");
+   	hipo::node<float>          *MC__True_mvx = reader.getBranch<float>("MC::True","mvx");
+   	hipo::node<float>          *MC__True_mvy = reader.getBranch<float>("MC::True","mvy");
+   	hipo::node<float>          *MC__True_mvz = reader.getBranch<float>("MC::True","mvz");
+   	hipo::node<int32_t>       *MC__True_otid = reader.getBranch<int32_t>("MC::True","otid");
+   	hipo::node<int32_t>        *MC__True_pid = reader.getBranch<int32_t>("MC::True","pid");
+   	hipo::node<float>           *MC__True_px = reader.getBranch<float>("MC::True","px");
+   	hipo::node<float>           *MC__True_py = reader.getBranch<float>("MC::True","py");
+   	hipo::node<float>           *MC__True_pz = reader.getBranch<float>("MC::True","pz");
+   	hipo::node<int32_t>        *MC__True_tid = reader.getBranch<int32_t>("MC::True","tid");
+   	hipo::node<float>       *MC__True_trackE = reader.getBranch<float>("MC::True","trackE");
+   	hipo::node<float>           *MC__True_vx = reader.getBranch<float>("MC::True","vx");
+   	hipo::node<float>           *MC__True_vy = reader.getBranch<float>("MC::True","vy");
+   	hipo::node<float>           *MC__True_vz = reader.getBranch<float>("MC::True","vz");
+	
+   	hipo::node<int32_t>         *RTPC__adc_ADC = reader.getBranch<int32_t>("RTPC::adc","ADC");
+   	hipo::node<int16_t>   *RTPC__adc_component = reader.getBranch<int16_t>("RTPC::adc","component");
+   	hipo::node<int8_t>        *RTPC__adc_layer = reader.getBranch<int8_t>("RTPC::adc","layer");
+   	hipo::node<int8_t>        *RTPC__adc_order = reader.getBranch<int8_t>("RTPC::adc","order");
+   	hipo::node<int16_t>         *RTPC__adc_ped = reader.getBranch<int16_t>("RTPC::adc","ped");
+   	hipo::node<int8_t>       *RTPC__adc_sector = reader.getBranch<int8_t>("RTPC::adc","sector");
+   	hipo::node<float>          *RTPC__adc_time = reader.getBranch<float>("RTPC::adc","time");
+	
+   	hipo::node<float>     *RTPC__pos_energy = reader.getBranch<float>("RTPC::pos","energy");
+   	hipo::node<float>        *RTPC__pos_phi = reader.getBranch<float>("RTPC::pos","phi");
+   	hipo::node<float>       *RTPC__pos_posx = reader.getBranch<float>("RTPC::pos","posx");
+   	hipo::node<float>       *RTPC__pos_posy = reader.getBranch<float>("RTPC::pos","posy");
+   	hipo::node<float>       *RTPC__pos_posz = reader.getBranch<float>("RTPC::pos","posz");
+   	hipo::node<int32_t>     *RTPC__pos_step = reader.getBranch<int32_t>("RTPC::pos","step");
+   	hipo::node<float>       *RTPC__pos_time = reader.getBranch<float>("RTPC::pos","time");
+	
 	hipo::node<int16_t>      *RTPC__rec_TID = reader.getBranch<int16_t>("RTPC::rec","TID");
 	hipo::node<int16_t>   *RTPC__rec_cellID = reader.getBranch<int16_t>("RTPC::rec","cellID");
 	hipo::node<float>       *RTPC__rec_posX = reader.getBranch<float>("RTPC::rec","posX");
@@ -202,15 +208,15 @@ int main(int argc, char** argv) {
 		for(int b = 0; b <= n_RTPC__rec_TID; b++){
 		        std::cout << RTPC__rec_TID->getValue(b) << " " << RTPC__rec_time->getValue(b) << std::endl;
 			if(b < n_RTPC__rec_TID){
-			prevtid = RTPC__rec_TID->getValue(b);
+				prevtid = RTPC__rec_TID->getValue(b);
 			}
 			else{
-			  prevtid = -111;
+				prevtid = -111;
 			}
 			trackidchange = false;
 			if(tid != prevtid){
-			  finish_track_flag = false;
-			  trackidchange = true; 
+			  	finish_track_flag = false;
+			  	trackidchange = true; 
 			        if(num_hits_this_chain[tid] > 0){
 					HelixFit(num_hits_this_chain[tid]-1, szpos, R, A, B, Phi_deg, Theta_deg, Z0, fit_track_to_beamline);
 					std::cout << "tid : "  << tid << std::endl;
@@ -223,162 +229,162 @@ int main(int argc, char** argv) {
 					std::cout << "Phi " << Phi_deg << std::endl;
 					if(tid == 2){
 					
-					TCanvas *p = new TCanvas("p","p",800,600);
-					TMultiGraph *mg = new TMultiGraph();
-					TEllipse *e = new TEllipse(A, B, R, R);
-					p->DrawFrame(-70,-70,70,70);
-					//e->Draw();
-					double xpos[300];
-					double ypos[300];
-					double zpos[300];
-					double rpos[300];
-					for(int i = 0; i < num_hits_this_chain[tid]-1; i++){
-					  xpos[i] = szpos[i][0];
-					  ypos[i] = szpos[i][1];
-					  zpos[i] = szpos[i][2];
-					  rpos[i] = TMath::Sqrt(xpos[i]*xpos[i] + ypos[i]*ypos[i]);
-					}
-					//if(fit_track_to_beamline){
-					  xpos[num_hits_this_chain[tid]] = 0;
-					  ypos[num_hits_this_chain[tid]] = 0;
-					  zpos[num_hits_this_chain[tid]] = Z0;
-					  rpos[num_hits_this_chain[tid]] = 0;
-					  num_hits_this_chain[tid]++;
-					  //}
-					  double t0 = (TMath::Pi()/2) + Phi_deg*TMath::DegToRad();
-					double tmin = t0; 
-					double tmax = t0 - TMath::TwoPi();
-					int numpoints = 2000;
-					double step = (tmax - tmin)/(numpoints-1);
-					double xarrhelix[numpoints];
-					double yarrhelix[numpoints];
-					double zarrhelix[numpoints];
-					double xarrinner[numpoints];
-					double yarrinner[numpoints];
-					double xarrouter[numpoints];
-					double yarrouter[numpoints];
+						TCanvas *p = new TCanvas("p","p",800,600);
+						TMultiGraph *mg = new TMultiGraph();
+						TEllipse *e = new TEllipse(A, B, R, R);
+						p->DrawFrame(-70,-70,70,70);
+						//e->Draw();
+						double xpos[300];
+						double ypos[300];
+						double zpos[300];
+						double rpos[300];
+						for(int i = 0; i < num_hits_this_chain[tid]-1; i++){
+					  		xpos[i] = szpos[i][0];
+					  		ypos[i] = szpos[i][1];
+					  		zpos[i] = szpos[i][2];
+					  		rpos[i] = TMath::Sqrt(xpos[i]*xpos[i] + ypos[i]*ypos[i]);
+						}
+						//if(fit_track_to_beamline){
+					  	xpos[num_hits_this_chain[tid]] = 0;
+					  	ypos[num_hits_this_chain[tid]] = 0;
+					  	zpos[num_hits_this_chain[tid]] = Z0;
+					  	rpos[num_hits_this_chain[tid]] = 0;
+					  	num_hits_this_chain[tid]++;
+					  	//}
+					  	double t0 = (TMath::Pi()/2) + Phi_deg*TMath::DegToRad();
+						double tmin = t0; 
+						double tmax = t0 - TMath::TwoPi();
+						int numpoints = 2000;
+						double step = (tmax - tmin)/(numpoints-1);
+						double xarrhelix[numpoints];
+						double yarrhelix[numpoints];
+						double zarrhelix[numpoints];
+						double xarrinner[numpoints];
+						double yarrinner[numpoints];
+						double xarrouter[numpoints];
+						double yarrouter[numpoints];
 					
-					int i2 = 0;
-					double partxhelix[numpoints];
-					double partyhelix[numpoints];
-					double partzhelix[numpoints];
-					double partrhelix[numpoints];
-					TNtuple *helixn = new TNtuple("helixn","helixn","x:y:z");
-					for(int i = 0; i < numpoints;i++){
-					  if(i*step >= -TMath::Pi()){
-					    xarrhelix[i] = A+xcirc(tmin+i*step,R,0);
-					    yarrhelix[i] = B+ycirc(tmin+i*step,R,0);
-					    zarrhelix[i] = Z0-zcirc(tmin+i*step-t0,R,Theta_deg);
-					    //zarrhelix[i] = Z0;
-					    helixn->Fill(xarrhelix[i],yarrhelix[i],zarrhelix[i]);
-					    if(TMath::Abs(xarrhelix[i])<70 && TMath::Abs(yarrhelix[i])<70){
-					      partxhelix[i2] = xarrhelix[i];
-					      partyhelix[i2] = yarrhelix[i];
-					      partzhelix[i2] = zarrhelix[i];
-					      partrhelix[i2] = TMath::Sqrt(xarrhelix[i] * xarrhelix[i] + yarrhelix[i] * yarrhelix[i]);
-					      i2++;
-					    }
-					  }
-					  xarrinner[i] = xcirc(tmin + i*step,30,0);
-					  yarrinner[i] = ycirc(tmin + i*step,30,0);
-					  xarrouter[i] = xcirc(tmin + i*step,70,0);
-					  yarrouter[i] = ycirc(tmin + i*step,70,0);
+						int i2 = 0;
+						double partxhelix[numpoints];
+						double partyhelix[numpoints];
+						double partzhelix[numpoints];
+						double partrhelix[numpoints];
+						TNtuple *helixn = new TNtuple("helixn","helixn","x:y:z");
+						for(int i = 0; i < numpoints;i++){
+					 		if(i*step >= -TMath::Pi()){
+					    			xarrhelix[i] = A+xcirc(tmin+i*step,R,0);
+					    			yarrhelix[i] = B+ycirc(tmin+i*step,R,0);
+					    			zarrhelix[i] = Z0-zcirc(tmin+i*step-t0,R,Theta_deg);
+					    			//zarrhelix[i] = Z0;
+					    			helixn->Fill(xarrhelix[i],yarrhelix[i],zarrhelix[i]);
+					    			if(TMath::Abs(xarrhelix[i])<70 && TMath::Abs(yarrhelix[i])<70){
+					      				partxhelix[i2] = xarrhelix[i];
+					      				partyhelix[i2] = yarrhelix[i];
+					      				partzhelix[i2] = zarrhelix[i];
+					      				partrhelix[i2] = TMath::Sqrt(xarrhelix[i] * xarrhelix[i] + yarrhelix[i] * yarrhelix[i]);
+					      				i2++;
+								}
+					  		}
+					  		xarrinner[i] = xcirc(tmin + i*step,30,0);
+					  		yarrinner[i] = ycirc(tmin + i*step,30,0);
+					  		xarrouter[i] = xcirc(tmin + i*step,70,0);
+					  		yarrouter[i] = ycirc(tmin + i*step,70,0);
 					  
-					}
-					TGraph *circgr = new TGraph(numpoints,partxhelix,partyhelix);
-					circgr->SetMarkerColor(2);
-					circgr->GetXaxis()->SetLimits(-70,70);
-				        circgr->GetYaxis()->SetRangeUser(-70,70);
+						}
+						TGraph *circgr = new TGraph(numpoints,partxhelix,partyhelix);
+						circgr->SetMarkerColor(2);
+						circgr->GetXaxis()->SetLimits(-70,70);
+				        	circgr->GetYaxis()->SetRangeUser(-70,70);
 
-					mg->Add(circgr);
+						mg->Add(circgr);
 
-					TGraph *innergr = new TGraph(numpoints,xarrinner,yarrinner);
-					mg->Add(innergr);
-					TGraph *outergr = new TGraph(numpoints,xarrouter,yarrouter);
-					mg->Add(outergr);
+						TGraph *innergr = new TGraph(numpoints,xarrinner,yarrinner);
+						mg->Add(innergr);
+						TGraph *outergr = new TGraph(numpoints,xarrouter,yarrouter);
+						mg->Add(outergr);
 					
-					TGraph *gr = new TGraph(num_hits_this_chain[tid]-1,xpos,ypos);
-					gr->GetXaxis()->SetLimits(-70,70);
-				        gr->GetYaxis()->SetRangeUser(-70,70);
-					gr->SetMarkerStyle(31);
-					mg->Add(gr);
-					if(split_curve){
-					TGraph *gr2 = new TGraph(itemp - 1, tempx, tempy);
-					gr2->GetXaxis()->SetLimits(-70,70);
-				        gr2->GetYaxis()->SetRangeUser(-70,70);
-					gr2->SetMarkerStyle(31);
-					mg->Add(gr2);
-					}
-					mg->GetXaxis()->SetLimits(-70,70);
-				        mg->GetYaxis()->SetRangeUser(-70,70);
-					mg->SetTitle("y vs x;x;y");
-					mg->Draw("ap");
+						TGraph *gr = new TGraph(num_hits_this_chain[tid]-1,xpos,ypos);
+						gr->GetXaxis()->SetLimits(-70,70);
+				       		gr->GetYaxis()->SetRangeUser(-70,70);
+						gr->SetMarkerStyle(31);
+						mg->Add(gr);
+						if(split_curve){
+							TGraph *gr2 = new TGraph(itemp - 1, tempx, tempy);
+							gr2->GetXaxis()->SetLimits(-70,70);
+				        		gr2->GetYaxis()->SetRangeUser(-70,70);
+							gr2->SetMarkerStyle(31);
+							mg->Add(gr2);
+						}
+						mg->GetXaxis()->SetLimits(-70,70);
+				        	mg->GetYaxis()->SetRangeUser(-70,70);
+						mg->SetTitle("y vs x;x;y");
+						mg->Draw("ap");
 				       
-					p->Update();
-					p->SaveAs("gxy.png");
-					TCanvas *trz = new TCanvas("","",800,600);
-					TMultiGraph *mgrz = new TMultiGraph();
-					TGraph *grz = new TGraph(num_hits_this_chain[tid],rpos,zpos);
-					grz->SetMarkerStyle(31);
-					TGraph *hgrz = new TGraph(numpoints,partrhelix,partzhelix);
-					hgrz->SetMarkerColor(2);
-					mgrz->Add(grz);
-					mgrz->Add(hgrz);
-					if(split_curve){
-					  TGraph *grz2 = new TGraph(itemp - 1, tempr, tempz);
-					  mgrz->Add(grz2);
-					}
-					mgrz->SetTitle("z vs r;r;z");
-					mgrz->Draw("ap");
-					trz->SaveAs("grz.png");
-					//TApplication *tapp = new TApplication("tapp",0,0);
-					//TApplication tapp("App", 0, 0);
-					TCanvas *tc = new TCanvas("","",800,600);
-					TView3D *view = (TView3D*) TView::CreateView(1);
-					//view->SetRange(5,5,5,25,25,25);
-					//TView *view = TView::CreateView(1);
-				        view->SetRange(-70,-70,100,70,70,200);
-					TNtuple *n = new TNtuple("n","n","x:y:z");
-					for(int i = 0; i <= num_hits_this_chain[tid] ; i++){
-					  n->Fill(xpos[i],ypos[i],zpos[i]);
-					  std::cout << xpos[i] << " " << ypos[i] << " " << zpos[i] << " " << TMath::ATan2(ypos[i],xpos[i])*TMath::RadToDeg() <<  std::endl;
-					}
-					n->SetMarkerStyle(3);
-					n->Draw("x:y:z");
-					helixn->Draw("x:y:z","","same");
-				        tc->cd();
-					//tc->Modified(); 
-					tc->Update();
-					//TApplication *tapp = new TApplication("tapp",&argc, argv);
-					//tapp.Run();
-				        tc->SaveAs("3d.png");
+						p->Update();
+						p->SaveAs("gxy.png");
+						TCanvas *trz = new TCanvas("","",800,600);
+						TMultiGraph *mgrz = new TMultiGraph();
+						TGraph *grz = new TGraph(num_hits_this_chain[tid],rpos,zpos);
+						grz->SetMarkerStyle(31);
+						TGraph *hgrz = new TGraph(numpoints,partrhelix,partzhelix);
+						hgrz->SetMarkerColor(2);
+						mgrz->Add(grz);
+						mgrz->Add(hgrz);
+						if(split_curve){
+							TGraph *grz2 = new TGraph(itemp - 1, tempr, tempz);
+					  		mgrz->Add(grz2);
+						}
+						mgrz->SetTitle("z vs r;r;z");
+						mgrz->Draw("ap");
+						trz->SaveAs("grz.png");
+						//TApplication *tapp = new TApplication("tapp",0,0);
+						//TApplication tapp("App", 0, 0);
+						TCanvas *tc = new TCanvas("","",800,600);
+						TView3D *view = (TView3D*) TView::CreateView(1);
+						//view->SetRange(5,5,5,25,25,25);
+						//TView *view = TView::CreateView(1);
+				        	view->SetRange(-70,-70,100,70,70,200);
+						TNtuple *n = new TNtuple("n","n","x:y:z");
+						for(int i = 0; i <= num_hits_this_chain[tid] ; i++){
+					  		n->Fill(xpos[i],ypos[i],zpos[i]);
+					  		std::cout << xpos[i] << " " << ypos[i] << " " << zpos[i] << " " << TMath::ATan2(ypos[i],xpos[i])*TMath::RadToDeg() <<  std::endl;
+						}
+						n->SetMarkerStyle(3);
+						n->Draw("x:y:z");
+						helixn->Draw("x:y:z","","same");
+				        	tc->cd();
+						//tc->Modified(); 
+						tc->Update();
+						//TApplication *tapp = new TApplication("tapp",&argc, argv);
+						//tapp.Run();
+				        	tc->SaveAs("3d.png");
 				       
-					//std::cout << "\nNext Event?" << std::endl;
-					//int key = std::cin.get();
-					//if (key == EOF || key == 'n' || key == 'N') return 0;
-					//if (key != '\n') std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
-					//std::cout << "OK" << std::endl;
+						//std::cout << "\nNext Event?" << std::endl;
+						//int key = std::cin.get();
+						//if (key == EOF || key == 'n' || key == 'N') return 0;
+						//if (key != '\n') std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
+						//std::cout << "OK" << std::endl;
 
-					flag = false;
+						flag = false;
 					}
 				}
 				//double szpos[300][3] = new double[300][3];
 				if(b < n_RTPC__rec_TID){
-				tid = RTPC__rec_TID->getValue(b);
+					tid = RTPC__rec_TID->getValue(b);
 				}
 				else
-				  {
-				    break;
-				  }
+			  	{
+				    	break;
+			  	}
 				//	if(tid = -111){break;}
 				num_chains++;
 				num_hits_this_chain[tid] = 0;
 			}else if(finish_track_flag){
-			  tempx[itemp] = RTPC__rec_posX->getValue(b);
-			  tempy[itemp] = RTPC__rec_posY->getValue(b);
-			  tempz[itemp] = RTPC__rec_posZ->getValue(b);
-			  itemp++;
-			   continue;
+			  	tempx[itemp] = RTPC__rec_posX->getValue(b);
+			  	tempy[itemp] = RTPC__rec_posY->getValue(b);
+			  	tempz[itemp] = RTPC__rec_posZ->getValue(b);
+			  	itemp++;
+			   	continue;
 			}
 			
 			int cellID = RTPC__rec_cellID->getValue(b);
@@ -391,9 +397,9 @@ int main(int argc, char** argv) {
 			double q = 1;
 
 			if(split_curve && b > 0 && !trackidchange && !finish_track_flag && TMath::Abs(time - RTPC__rec_time->getValue(b-1))>500){
-			  finish_track_flag = true;
-			  //std::cout << "finish track flag" << std::endl;
-			  continue;
+			  	finish_track_flag = true;
+			  	//std::cout << "finish track flag" << std::endl;
+			  	continue;
 			}
 			itemp = 0; 
 			num_hits_this_chain[tid]++;
